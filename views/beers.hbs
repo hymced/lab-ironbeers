@@ -1,10 +1,46 @@
 <div class="all-beers">
 
+  {{!-- METHOD 1 --}}
+  {{!--
+  {{log this}}
   {{#each this}}
+  --}}
+
+  {{!-- METHOD 2 --}}
+  {{!-- {{log beers}} --}}
+  {{#each beers}}
+  
     <div class='beer-container'>
+
       {{> beerpartial this}}
+
+      {{!--
+      {{log "--"}}
+      {{log @key}}
+      {{log this}}
+      --}}
+
     </div>
-
   {{/each}}
-
 </div>
+
+{{!--
+  ...,
+  settings: {
+    'x-powered-by': true,
+    etag: 'weak',
+    'etag fn': [Function: generateETag],
+    env: 'development',
+    'query parser': 'extended',
+    'query parser fn': [Function: parseExtendedQueryString],
+    'subdomain offset': 2,
+    'trust proxy': false,
+    'trust proxy fn': [Function: trustNone],
+    view: [Function: View],
+    views: 'C:\\Users\\Ced\\IRONHACK\\ironhack-labs\\lab-ironbeers\\views',
+    'jsonp callback name': 'callback',
+    'view engine': 'hbs'
+  },
+  _locals: [Object: null prototype] {},
+  cache: false
+--}}
