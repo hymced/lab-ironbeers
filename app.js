@@ -39,7 +39,51 @@ app.get('/beers', (req, res) => {
   punkAPI
     .getBeers()
     .then(beersFromApi => {
-      // METHOD 1 express convert the array to an object adding app.settings, a _locals property, and a cache property, which are iterable!... (indexes are mapped to keys)
+      // [
+      //   {
+      //     id: 1,
+      //     name: 'xx',
+      //     tagline: 'xx',
+      //     description: 'xx',
+      //     ...
+      //   },
+      //   ...
+      // ]
+      // METHOD 1 express convert the array to an object adding app.settings, a _locals property, and a cache property, which are iterable!... (array indexes are mapped to keys)
+      // {
+      //   '0': {
+      //     id: 1,
+      //     name: 'xx',
+      //     tagline: 'xx',
+      //     description: 'xx',
+      //     ...
+      //   },
+      //   '1': {
+      //     id: 2,
+      //     name: 'xx',
+      //     tagline: 'xx',
+      //     description: 'xx',
+      //     ...
+      //   },
+      //   ...,
+      //   settings: {
+      //     'x-powered-by': true,
+      //     etag: 'weak',
+      //     'etag fn': [Function: generateETag],
+      //     env: 'development',
+      //     'query parser': 'extended',
+      //     'query parser fn': [Function: parseExtendedQueryString],
+      //     'subdomain offset': 2,
+      //     'trust proxy': false,
+      //     'trust proxy fn': [Function: trustNone],
+      //     view: [Function: View],
+      //     views: 'C:\\Users\\Ced\\IRONHACK\\ironhack-labs\\lab-ironbeers\\views',
+      //     'jsonp callback name': 'callback',
+      //     'view engine': 'hbs'
+      //   },
+      //   _locals: [Object: null prototype] {},
+      //   cache: false
+      // }
       // res.render('beers', beersFromApi); // then {{#each this}} in views
       // console.log("-- app.settings")
       // console.log(app.settings)
@@ -53,9 +97,17 @@ app.get('/beers', (req, res) => {
     .catch(error => console.log(error));
 });
 
-app.get('/beers/:id', (req, res) => {
+// app.get('/beers/:id', (req, res) => {
+//   punkAPI
+//     .getBeer(req.params.id.split('-')[1])
+//     .then(beerFromApi => {
+//       res.render('beer', beerFromApi[0]);
+//     })
+//     .catch(error => console.log(error));
+// });
+app.get('/beers/beer-:beerId', (req, res) => {
   punkAPI
-    .getBeer(req.params.id.split('-')[1])
+    .getBeer(req.params.beerId)
     .then(beerFromApi => {
       res.render('beer', beerFromApi[0]);
     })
