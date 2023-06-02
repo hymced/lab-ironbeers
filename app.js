@@ -84,6 +84,7 @@ app.get('/beers', (req, res) => {
       //   _locals: [Object: null prototype] {},
       //   cache: false
       // }
+      //
       // res.render('beers', beersFromApi); // then {{#each this}} in views
       // console.log("-- app.settings")
       // console.log(app.settings)
@@ -92,7 +93,7 @@ app.get('/beers', (req, res) => {
       // console.log("-- app.cache")
       // console.log(app.cache) // returns {}
       // METHOD 2
-      res.render('beers', { beers: beersFromApi }); // then {{#each beers}} in views
+      res.render('beers', { beers: beersFromApi }); // then {{#each beers}} in views NOT {{#each this}} which will also have the extra properties!
     })
     .catch(error => console.log(error));
 });
